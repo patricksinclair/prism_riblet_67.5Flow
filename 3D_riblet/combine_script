@@ -1,0 +1,5 @@
+#!/bin/bash
+#this is a script to reconstruct the parallely run OpenFOAM cases.
+reconstructParMesh
+reconstructPar
+paraFoam &

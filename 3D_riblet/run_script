@@ -1,0 +1,14 @@
+#!/bin/bash
+#This is a script to reset the openfoam case and run it again.
+#First delete everything
+foamListTimes -rm
+rm -r processor*
+rm 0/alpha.biofilm
+
+#now set everything up
+blockMesh
+setFields
+decomposePar
+
+#now run the case in parallel
+mpirun -np 4 interFoam -parallel > log &

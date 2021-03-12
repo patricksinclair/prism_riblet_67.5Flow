@@ -1,0 +1,39 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+#includeIfPresent "../parameters.dat"
+
+defaultFieldValues
+(
+    volScalarFieldValue alpha.biofilm 0
+);
+
+regions
+(
+    boxToCell
+    {
+      //chosen so that there's a layer of biofilm completely covering the system
+      //with a prescribed thickness
+        box (-100 0 -100) (100 $bf_thickness_s 100);
+        fieldValues
+        (
+            volScalarFieldValue alpha.biofilm 1
+        );
+    }
+);
+
+
+// ************************************************************************* //

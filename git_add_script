@@ -1,0 +1,17 @@
+#!/bin/bash
+#adds all the relevant files to git
+#add an argument when you run the script, this will be the commit title
+
+#beacuse system is so big, need to delete this file to accommodate github file limits
+rm 3D_riblet/constant/polyMesh/faces
+
+git add git_add_script README.txt
+git add 3D_riblet/0 3D_riblet/system 3D_riblet/constant
+git add 3D_riblet/run_script 3D_riblet/ball_run_script 3D_riblet/combine_script 3D_riblet/mpi_script_interFoam.sh 3D_riblet/job_continiuity_script.sh
+git add 3D_riblet/parameters.dat
+git add 3D_riblet/interpolater_script.sh
+git add 3D_riblet/time-derivatives-3D.ipynb 3D_riblet/drag_integrator.ipynb
+
+#git commit -m "$1"
+
+#git push -u origin main

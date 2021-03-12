@@ -1,0 +1,16 @@
+#!/bin/bash
+#This is a script to reset the openfoam case and run it again.
+#This one has been modified for use on the ball cluster.  Due to the differing openfoam versions, we don't remove alpha.water, and we use more processors
+#First delete everything
+foamListTimes -rm
+rm -r processor*
+cp 0/alpha.biofilm.orig 0/alpha.biofilm
+#rm 0/alpha.water
+
+#now set everything up
+blockMesh
+setFields
+decomposePar
+
+#now run the case in parallel
+mpirun -np 20 interFoam -parallel > log &
